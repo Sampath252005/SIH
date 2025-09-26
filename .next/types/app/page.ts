@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // File: /home/sushanth/Coding/SIH/app/page.js
+=======
+// File: /home/sampath/SIH/SIH/app/page.js
+>>>>>>> e4b0340 (edited)
 import * as entry from '../../../app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
