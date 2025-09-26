@@ -1,61 +1,343 @@
 {
-  "section_id": "Section_1",
-  "start_station": "Station_A",
-  "end_station": "Station_B",
-  "tracks": [
-    {
-      "track_id": "Main_Line",
-      "blocks": [
-        {"id": "Block_1", "length_km": 5, "occupied_by": "Train_101"},
-        {"id": "Block_2", "length_km": 7, "occupied_by": null},
-        {"id": "Block_3", "length_km": 8, "occupied_by": "Train_103"}
-      ]
-    },
-    {
-      "track_id": "Loop_Line_1",
-      "blocks": [
-        {"id": "Block_1L", "length_km": 5, "occupied_by": "Train_102"},
-        {"id": "Block_2L", "length_km": 7, "occupied_by": null},
-        {"id": "Block_3L", "length_km": 8, "occupied_by": null}
-      ]
-    }
-  ],
-  "trains": [
-    {
-      "train_id": "Train_101",
-      "type": "Express",
-      "priority": 1,
-      "current_track": "Main_Line",
-      "current_block": "Block_1",
-      "speed_kmh": 60,
-      "scheduled_departure": "06:00",
-      "scheduled_arrival": "06:30",
-      "delay_min": 0,
-      "next_station": "Station_B"
-    },
-    {
-      "train_id": "Train_102",
-      "type": "Passenger",
-      "priority": 2,
-      "current_track": "Loop_Line_1",
-      "current_block": "Block_1L",
-      "speed_kmh": 40,
-      "scheduled_departure": "06:05",
-      "scheduled_arrival": "06:45",
-      "delay_min": 5,
-      "next_station": "Station_B"
-    },
-    {
-      "train_id": "Train_103",
-      "type": "Freight",
-      "priority": 3,
-      "current_track": "Main_Line",
-      "current_block": "Block_3",
-      "speed_kmh": 35,
-      "scheduled_departure": "05:45",
-      "scheduled_arrival": "07:15",
-      "delay_min": 10,
-      "next_station": "Station_B"
-    }
-  ]
+  "Section_1": {
+    "section_id": "Section_1",
+    "start_station": "Station_A",
+    "end_station": "Station_B",
+    "tracks": [
+      {
+        "track_id": "Main_Line",
+        "blocks": [
+          {
+            "id": "Block_1",
+            "length_km": 5,
+            "occupied_by": "Train_101"
+          },
+          {
+            "id": "Block_2",
+            "length_km": 7,
+            "occupied_by": null
+          },
+          {
+            "id": "Block_3",
+            "length_km": 8,
+            "occupied_by": "Train_103"
+          }
+        ]
+      },
+      {
+        "track_id": "Loop_Line_1",
+        "blocks": [
+          {
+            "id": "Block_1L",
+            "length_km": 5,
+            "occupied_by": "Train_102"
+          },
+          {
+            "id": "Block_2L",
+            "length_km": 7,
+            "occupied_by": null
+          },
+          {
+            "id": "Block_3L",
+            "length_km": 8,
+            "occupied_by": null
+          }
+        ]
+      }
+    ],
+    "trains": [
+      {
+        "train_id": "Train_101",
+        "type": "Express",
+        "priority": 1,
+        "current_track": "Main_Line",
+        "current_block": "Block_1",
+        "speed_kmh": 60,
+        "scheduled_departure": "06:00",
+        "scheduled_arrival": "06:30",
+        "delay_min": 0,
+        "next_station": "Station_B"
+      },
+      {
+        "train_id": "Train_102",
+        "type": "Passenger",
+        "priority": 2,
+        "current_track": "Loop_Line_1",
+        "current_block": "Block_1L",
+        "speed_kmh": 40,
+        "scheduled_departure": "06:05",
+        "scheduled_arrival": "06:45",
+        "delay_min": 5,
+        "next_station": "Station_B"
+      },
+      {
+        "train_id": "Train_103",
+        "type": "Freight",
+        "priority": 3,
+        "current_track": "Main_Line",
+        "current_block": "Block_3",
+        "speed_kmh": 35,
+        "scheduled_departure": "05:45",
+        "scheduled_arrival": "07:15",
+        "delay_min": 10,
+        "next_station": "Station_B"
+      }
+    ]
+  },
+  "section_2": {
+    "section_id": "Section_2",
+    "start_station": "Station_B",
+    "end_station": "Station_C",
+    "tracks": [
+      {
+        "track_id": "Main_Line",
+        "blocks": [
+          {
+            "id": "Block_4",
+            "length_km": 6,
+            "occupied_by": "Train_201"
+          },
+          {
+            "id": "Block_5",
+            "length_km": 9,
+            "occupied_by": null
+          },
+          {
+            "id": "Block_6",
+            "length_km": 7,
+            "occupied_by": "Train_203"
+          },
+          {
+            "id": "Block_7",
+            "length_km": 5,
+            "occupied_by": null
+          }
+        ]
+      },
+      {
+        "track_id": "Branch_Line_A",
+        "blocks": [
+          {
+            "id": "Block_4B",
+            "length_km": 8,
+            "occupied_by": null
+          },
+          {
+            "id": "Block_5B",
+            "length_km": 6,
+            "occupied_by": "Train_202"
+          },
+          {
+            "id": "Block_6B",
+            "length_km": 10,
+            "occupied_by": null
+          }
+        ]
+      },
+      {
+        "track_id": "Siding_Track",
+        "blocks": [
+          {
+            "id": "Block_S1",
+            "length_km": 3,
+            "occupied_by": "Train_204"
+          },
+          {
+            "id": "Block_S2",
+            "length_km": 4,
+            "occupied_by": null
+          }
+        ]
+      }
+    ],
+    "trains": [
+      {
+        "train_id": "Train_201",
+        "type": "Express",
+        "priority": 1,
+        "current_track": "Main_Line",
+        "current_block": "Block_4",
+        "speed_kmh": 70,
+        "scheduled_departure": "06:35",
+        "scheduled_arrival": "07:10",
+        "delay_min": 3,
+        "next_station": "Station_C"
+      },
+      {
+        "train_id": "Train_202",
+        "type": "Local",
+        "priority": 3,
+        "current_track": "Branch_Line_A",
+        "current_block": "Block_5B",
+        "speed_kmh": 45,
+        "scheduled_departure": "06:20",
+        "scheduled_arrival": "07:25",
+        "delay_min": 0,
+        "next_station": "Station_C"
+      },
+      {
+        "train_id": "Train_203",
+        "type": "Passenger",
+        "priority": 2,
+        "current_track": "Main_Line",
+        "current_block": "Block_6",
+        "speed_kmh": 55,
+        "scheduled_departure": "06:15",
+        "scheduled_arrival": "07:00",
+        "delay_min": 8,
+        "next_station": "Station_C"
+      },
+      {
+        "train_id": "Train_204",
+        "type": "Maintenance",
+        "priority": 4,
+        "current_track": "Siding_Track",
+        "current_block": "Block_S1",
+        "speed_kmh": 0,
+        "scheduled_departure": "07:30",
+        "scheduled_arrival": "08:00",
+        "delay_min": 0,
+        "next_station": "Station_C"
+      }
+    ]
+  },
+  "section_3": {
+    "section_id": "Section_3",
+    "start_station": "Station_C",
+    "end_station": "Station_D",
+    "tracks": [
+      {
+        "track_id": "Main_Line",
+        "blocks": [
+          {
+            "id": "Block_8",
+            "length_km": 12,
+            "occupied_by": null
+          },
+          {
+            "id": "Block_9",
+            "length_km": 8,
+            "occupied_by": "Train_302"
+          },
+          {
+            "id": "Block_10",
+            "length_km": 10,
+            "occupied_by": null
+          },
+          {
+            "id": "Block_11",
+            "length_km": 6,
+            "occupied_by": "Train_301"
+          }
+        ]
+      },
+      {
+        "track_id": "Express_Line",
+        "blocks": [
+          {
+            "id": "Block_8E",
+            "length_km": 15,
+            "occupied_by": "Train_303"
+          },
+          {
+            "id": "Block_9E",
+            "length_km": 12,
+            "occupied_by": null
+          },
+          {
+            "id": "Block_10E",
+            "length_km": 9,
+            "occupied_by": null
+          }
+        ]
+      },
+      {
+        "track_id": "Cargo_Line",
+        "blocks": [
+          {
+            "id": "Block_8C",
+            "length_km": 8,
+            "occupied_by": null
+          },
+          {
+            "id": "Block_9C",
+            "length_km": 14,
+            "occupied_by": "Train_304"
+          },
+          {
+            "id": "Block_10C",
+            "length_km": 11,
+            "occupied_by": null
+          },
+          {
+            "id": "Block_11C",
+            "length_km": 7,
+            "occupied_by": "Train_305"
+          }
+        ]
+      }
+    ],
+    "trains": [
+      {
+        "train_id": "Train_301",
+        "type": "Passenger",
+        "priority": 2,
+        "current_track": "Main_Line",
+        "current_block": "Block_11",
+        "speed_kmh": 50,
+        "scheduled_departure": "07:15",
+        "scheduled_arrival": "08:20",
+        "delay_min": 2,
+        "next_station": "Station_D"
+      },
+      {
+        "train_id": "Train_302",
+        "type": "Local",
+        "priority": 3,
+        "current_track": "Main_Line",
+        "current_block": "Block_9",
+        "speed_kmh": 40,
+        "scheduled_departure": "07:00",
+        "scheduled_arrival": "08:45",
+        "delay_min": 12,
+        "next_station": "Station_D"
+      },
+      {
+        "train_id": "Train_303",
+        "type": "High_Speed",
+        "priority": 1,
+        "current_track": "Express_Line",
+        "current_block": "Block_8E",
+        "speed_kmh": 120,
+        "scheduled_departure": "07:30",
+        "scheduled_arrival": "08:05",
+        "delay_min": 0,
+        "next_station": "Station_D"
+      },
+      {
+        "train_id": "Train_304",
+        "type": "Freight",
+        "priority": 4,
+        "current_track": "Cargo_Line",
+        "current_block": "Block_9C",
+        "speed_kmh": 30,
+        "scheduled_departure": "06:45",
+        "scheduled_arrival": "09:15",
+        "delay_min": 15,
+        "next_station": "Station_D"
+      },
+      {
+        "train_id": "Train_305",
+        "type": "Freight",
+        "priority": 4,
+        "current_track": "Cargo_Line",
+        "current_block": "Block_11C",
+        "speed_kmh": 25,
+        "scheduled_departure": "06:30",
+        "scheduled_arrival": "09:45",
+        "delay_min": 20,
+        "next_station": "Station_D"
+      }
+    ]
+  }
 }
