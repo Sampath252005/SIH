@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Train, Hash, Clock, MapPin, Zap } from "lucide-react";
 import Performence from "./Performence";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 export default function SectionDetails({ section }) {
   const [rec, setRec] = useState([]);
@@ -98,7 +99,7 @@ export default function SectionDetails({ section }) {
               transition={{ delay: idx * 0.2, duration: 0.5 }}
               className="border p-6 rounded-xl bg-gray-800 shadow-md hover:shadow-xl transition-shadow"
             >
-              <p className="font-bold text-lg flex items-center gap-2 mb-2">
+              <p className="font-bold text-lg flex  gap-2 mb-2">
                 <Train className="w-5 h-5 text-blue-400" />
                 {train.train_id} ({train.type})
               </p>
@@ -134,10 +135,13 @@ export default function SectionDetails({ section }) {
         </div>
 
         {/* AI Recommendations */}
-        <div className="bg-gray-800 rounded-xl p-4 w-full lg:w-1/2">
+        <div className="bg-gray-800 flex flex-col rounded-xl p-4 w-full lg:w-1/2 ">
           <h3 className="text-lg font-semibold mb-3">AI Recommendations</h3>
           {loading ? ( // ✅ show loading when fetching
-            <p className="text-yellow-400">Loading recommendations...</p>
+            <p className="text-yellow-400  w-full h-full items-center justify-center">
+              <Image src="/List1.gif" alt="loading" width={500} height={500} />
+              loading.....
+            </p>
           ) : (
             <ul className="list-disc list-inside text-gray-300 space-y-2">
               {rec.map((val, ind) => (

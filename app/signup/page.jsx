@@ -31,68 +31,73 @@ const SignUp = () => {
     const r = await response.json();
     if (!response.ok) {
       alert(r.message);
+      return;
     }
-    if (response.ok) {
-      alert(r.message);
-    }
+
+    alert(r.message);
     redirect("/signin");
   };
 
-  const div = (
+  // ✅ Replaced "div" with a clear name
+  const signinLink = (
     <div>
       <Link
-        className="border-1 border-gray-400 px-3 py-2 font-bold active:bg-gray-800 active:text-gray-100 rounded-3xl hover:bg-gray-400 hover:text-gray-900"
+        className="border border-gray-400 px-3 py-2 font-bold active:bg-gray-800 active:text-gray-100 rounded-3xl hover:bg-gray-400 hover:text-gray-900"
         href="/signin"
       >
-        Sign In
+        Already have an account? Sign In
       </Link>
     </div>
   );
 
   return (
-    <div>
-      <div className="h-[90vh] flex justify-center items-center">
-        <div className="border-2 border-gray-400 px-10 py-10 rounded-3xl shadow-lg bg-gray-800">
-          <h1 className="text-4xl font-bold text-center">Sign Up</h1>
-          <form className="flex flex-col gap-4 mt-4" action={register}>
+    <div className="h-[90vh] flex justify-center items-center">
+      <div className="border-2 border-gray-400 px-10 py-10 rounded-3xl shadow-lg bg-gray-800">
+        <h1 className="text-4xl font-bold text-center text-white">Sign Up</h1>
+        <form className="flex flex-col gap-4 mt-4" action={register}>
+          <input
+            type="text"
+            placeholder="Name"
+            name="name"
+            className="border-2 border-gray-400 px-3 py-2 rounded-3xl"
+            autoComplete="name"
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            className="border-2 border-gray-400 px-3 py-2 rounded-3xl"
+            autoComplete="email"
+            required
+          />
+          <div className="flex gap-3 items-center">
             <input
-              type="text"
-              placeholder="Name"
-              name="name"
-              className="border-2 border-gray-400 px-3 py-2 rounded-3xl"
-              autoComplete="name"
+              type={visible ? "text" : "password"}
+              name="password"
+              placeholder="Password"
+              className="border-2 border-gray-400 px-3 py-2 rounded-3xl flex-1"
+              autoComplete="current-password"
+              required
             />
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              className="border-2 border-gray-400 px-3 py-2 rounded-3xl"
-              autoComplete="email"
-            />
-            <div className="flex gap-3">
-              <input
-                type={visible ? "text" : "password"}
-                name="password"
-                placeholder="Password"
-                className="border-2 border-gray-400 px-3 py-2 rounded-3xl"
-                autoComplete="current-password"
-              />
-              <button
-                type="button"
-                onClick={() => setVisible(!visible)}
-                className="text-gray-400 hover:text-gray-900"
-              >
-                {visible ? <EyeOff size={20} /> : <Eye size={20} />}
-              </button>
-            </div>
             <button
-              type="submit"
-              className="border border-gray-400 px-3 py-2 font-bold active:bg-gray-800 active:text-gray-100 rounded-3xl hover:bg-gray-400 hover:text-gray-900"
+              type="button"
+              onClick={() => setVisible(!visible)}
+              className="text-gray-400 hover:text-gray-200"
             >
-              Sign Up
+              {visible ? <EyeOff size={20} /> : <Eye size={20} />}
             </button>
-          </form>
-        </div>
+          </div>
+          <button
+            type="submit"
+            className="border border-gray-400 px-3 py-2 font-bold active:bg-gray-800 active:text-gray-100 rounded-3xl hover:bg-gray-400 hover:text-gray-900"
+          >
+            Sign Up
+          </button>
+
+          {/* ✅ Render SignIn link */}
+          {signinLink}
+        </form>
       </div>
     </div>
   );

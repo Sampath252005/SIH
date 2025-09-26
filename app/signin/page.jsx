@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { signIn, useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { Eye, EyeOff } from "lucide-react";
@@ -43,7 +42,7 @@ const SignIn = () => {
     redirect("/");
   };
 
-  const div = (
+  const signupLink = (
     <div>
       <Link
         className="border border-gray-400 px-3 py-2 font-bold active:bg-gray-800 active:text-gray-100 rounded-3xl hover:bg-gray-400 hover:text-gray-900"
@@ -55,44 +54,47 @@ const SignIn = () => {
   );
 
   return (
-    <div>
-      <div className="h-[90vh] flex justify-center items-center">
-        <div className="border-2 border-gray-400 px-10 py-10 rounded-3xl shadow-lg bg-gray-800">
-          <h1 className="text-4xl font-bold text-center">Sign In</h1>
-          <form className="flex flex-col gap-4 mt-4" action={login}>
+    <div className="h-[90vh] flex justify-center items-center">
+      <div className="border-2 border-gray-400 px-10 py-10 rounded-3xl shadow-lg bg-gray-800">
+        <h1 className="text-4xl font-bold text-center text-white">Sign In</h1>
+        <form className="flex flex-col gap-4 mt-4" action={login}>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            className="border-2 border-gray-400 px-3 py-2 rounded-3xl"
+            autoComplete="email"
+            required
+          />
+
+          <div className="flex gap-3 items-center">
             <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              className="border-2 border-gray-400 px-3 py-2 rounded-3xl"
-              autoComplete="email"
+              type={visible ? "text" : "password"}
+              name="password"
+              placeholder="Password"
+              className="border-2 border-gray-400 px-3 py-2 rounded-3xl flex-1"
+              autoComplete="current-password"
+              required
             />
-
-            <div className="flex gap-3">
-              <input
-                type={visible ? "text" : "password"}
-                name="password"
-                placeholder="Password"
-                className="border-2 border-gray-400 px-3 py-2 rounded-3xl"
-                autoComplete="current-password"
-              />
-              <button
-                type="button"
-                onClick={() => setVisible(!visible)}
-                className="text-gray-400 hover:text-gray-900"
-              >
-                {visible ? <EyeOff size={20} /> : <Eye size={20} />}
-              </button>
-            </div>
-
             <button
-              type="submit"
-              className="border border-gray-400 px-3 py-2 font-bold active:bg-gray-800 active:text-gray-100 rounded-3xl hover:bg-gray-400 hover:text-gray-900"
+              type="button"
+              onClick={() => setVisible(!visible)}
+              className="text-gray-400 hover:text-gray-200"
             >
-              Sign In
+              {visible ? <EyeOff size={20} /> : <Eye size={20} />}
             </button>
-          </form>
-        </div>
+          </div>
+
+          <button
+            type="submit"
+            className="border border-gray-400 px-3 py-2 font-bold active:bg-gray-800 active:text-gray-100 rounded-3xl hover:bg-gray-400 hover:text-gray-900"
+          >
+            Sign In
+          </button>
+
+          {/* ✅ Correct way to render signup link */}
+          {signupLink}
+        </form>
       </div>
     </div>
   );
