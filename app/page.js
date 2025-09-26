@@ -1,103 +1,88 @@
 import Image from "next/image";
+import MetricCard from "./components/MetricCard";
+import TrainRow from "./components/TrainRow";
+import RailwaySectionView from "./components/RailwaySectionView";
 
-export default function Home() {
+export default function DashBoard() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <>
+      <div className="space-y-6">
+        {/* Header */}
+        <h2 className="text-3xl font-bold ml-10">Dashboard</h2>
+        <p className="text-gray-400">
+          Real-time overview of the railway network.
+        </p>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+        {/* Top Metrics */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <MetricCard
+            title="Network Throughput"
+            value="1,205 TU/hr"
+            change="+5.2%"
+          />
+          <MetricCard
+            title="Average Delay"
+            value="6.8 min"
+            change="-12.5%"
+            negative
+          />
+          <MetricCard title="Track Utilization" value="85%" change="+2.1%" />
+          <MetricCard title="Punctuality" value="92.3%" change="+1.8%" />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+
+        {/* Middle Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          {/* Railway Section View */}
+          <RailwaySectionView/>
+
+          {/* AI Recommendations */}
+          <div className="bg-gray-800 rounded-xl p-4">
+            <h3 className="text-lg font-semibold mb-3">AI Recommendations</h3>
+            <ul className="list-disc list-inside text-gray-300 space-y-2">
+              <li className="text-red-400">
+                Re-route FRT-745 via Loop Line B…
+              </li>
+              <li className="text-yellow-400">
+                Hold EXP-002 at Charlie Central…
+              </li>
+              <li className="text-green-400">Reduce speed for EXP-001…</li>
+              <li className="text-green-400">Advise crew of FRT-745…</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Train Status */}
+        <div className="bg-gray-800 rounded-xl p-4 overflow-x-auto">
+          <h3 className="text-lg font-semibold mb-3">Train Status</h3>
+          <table className="w-full text-left">
+            <thead>
+              <tr className="text-gray-400">
+                <th className="p-2">Train ID</th>
+                <th className="p-2">Category</th>
+                <th className="p-2">Status</th>
+                <th className="p-2">Delay (min)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <TrainRow id="EXP-001" cat="Express" status="On Time" delay="0" />
+              <TrainRow
+                id="FRT-745"
+                cat="Freight"
+                status="Delayed"
+                delay="15"
+              />
+              <TrainRow id="LCL-102" cat="Local" status="On Time" delay="0" />
+              <TrainRow
+                id="EXP-002"
+                cat="Express"
+                status="Stopped"
+                delay="45"
+              />
+              <TrainRow id="FRT-301" cat="Freight" status="Delayed" delay="5" />
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </>
   );
 }
