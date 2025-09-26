@@ -11,12 +11,13 @@ export default function SectionSelector({ sections, onConfirm }) {
   const handleSelect = (section) => {
     setSelected(section); // only highlight selection
     setShowOptions(false);
-    setQuery("");
+    setQuery(section.start_station + " → " + section.end_station);
   };
 
   const handleConfirm = () => {
     if (!selected) return alert("Please select a section first!");
     onConfirm(selected); // trigger parent only when check is clicked
+    setQuery("");
   };
 
   const filteredSections = sections.filter(

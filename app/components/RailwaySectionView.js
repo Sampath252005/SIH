@@ -7,7 +7,6 @@ import SectionDetails from "../components/SectionDetails";
 export default function RailwaySectionView() {
   const sections = getSections();
   const [selectedSection, setSelectedSection] = useState(null);
-  console.log(sections);
 
   const handleConfirm = (section) => {
     setSelectedSection(section); // only set section when check button is clicked

@@ -1,9 +1,28 @@
+"use client"
 import Image from "next/image";
 import MetricCard from "./components/MetricCard";
 import TrainRow from "./components/TrainRow";
+import { useEffect } from "react";
+import { redirect } from "next/navigation";
+import Performence from "./components/Performence";
 // import TrainJourneyViewer from "./components/RailwaySectionView";
 import RailwaySectionView from "./components/RailwaySectionView";
+import { useSession } from "next-auth/react";
 export default function DashBoard() {
+
+  const session = useSession();
+
+  useEffect(() => {
+    if (session.status === "unauthenticated") {
+      redirect("/signin");
+      return;
+    }
+
+    if (session.data?.user?.id) {
+      // profile
+    }
+  }, [session]);
+
   return (
     <>
       <div className="space-y-6 flex flex-col">
@@ -12,24 +31,7 @@ export default function DashBoard() {
         <p className="text-gray-400">
           Real-time overview of the railway network.
         </p>
-
-        {/* Top Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <MetricCard
-            title="Network Throughput"
-            value="1,205 TU/hr"
-            change="+5.2%"
-          />
-          <MetricCard
-            title="Average Delay"
-            value="6.8 min"
-            change="-12.5%"
-            negative
-          />
-          <MetricCard title="Track Utilization" value="85%" change="+2.1%" />
-          <MetricCard title="Punctuality" value="92.3%" change="+1.8%" />
-        </div>
-
+        
         {/* Middle Section */}
         <div className="flex   gap-4">
           {/* Railway Section View */}

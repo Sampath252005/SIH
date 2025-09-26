@@ -2,8 +2,69 @@
 import TracksView from "./TracksView";
 import { motion } from "framer-motion";
 import { Train, Hash, Clock, MapPin, Zap } from "lucide-react";
+import Performence from "./Performence";
+import { useState, useEffect } from "react";
 
 export default function SectionDetails({ section }) {
+  const [rec, setRec] = useState([]);
+  const [loading, setLoading] = useState(false); // ✅ loading state
+
+  const [per, setPer] = useState({
+    Network_Throughput: {
+      value: "0 TU/hr",
+      change: "0%",
+    },
+    Average_Delay: {
+      value: "0 min",
+      change: "0%",
+    },
+    Track_Utilization: {
+      value: "0%",
+      change: "0%",
+    },
+    Punctuality: {
+      value: "0%",
+      change: "0%",
+    },
+  });
+
+  const getRecommendation = async () => {
+    try {
+      setLoading(true); // ✅ start loading
+      console.log("Start.....");
+      const response = await fetch("/api/ai/recommendation", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(section),
+      });
+
+      const r = await response.json();
+      if (!response.ok) {
+        alert(r.message);
+      }
+      if (response.ok) {
+        const data1 = Object.values(r.message.recommendation);
+        const data2 = r.message.performance;
+        setRec(data1);
+        setPer(data2);
+        console.log("Done.....");
+      }
+    } catch (error) {
+      console.error("Error fetching recommendations:", error);
+    } finally {
+      setLoading(false); // ✅ stop loading
+    }
+  };
+
+  useEffect(() => {
+    if (section) {
+      getRecommendation();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [section]);
+
   if (!section) return <p className="p-4">No section selected.</p>;
 
   // ✅ Helper function to color-code delays
@@ -18,6 +79,8 @@ export default function SectionDetails({ section }) {
       <h2 className="text-xl font-bold mb-4">
         {section.start_station} → {section.end_station}
       </h2>
+
+      <Performence data={per} />
 
       {/* Track View */}
       <TracksView section={section} />
@@ -73,14 +136,17 @@ export default function SectionDetails({ section }) {
         {/* AI Recommendations */}
         <div className="bg-gray-800 rounded-xl p-4 w-full lg:w-1/2">
           <h3 className="text-lg font-semibold mb-3">AI Recommendations</h3>
-          <ul className="list-disc list-inside text-gray-300 space-y-2">
-            <li className="text-red-400">Re-route FRT-745 via Loop Line B…</li>
-            <li className="text-yellow-400">
-              Hold EXP-002 at Charlie Central…
-            </li>
-            <li className="text-green-400">Reduce speed for EXP-001…</li>
-            <li className="text-green-400">Advise crew of FRT-745…</li>
-          </ul>
+          {loading ? ( // ✅ show loading when fetching
+            <p className="text-yellow-400">Loading recommendations...</p>
+          ) : (
+            <ul className="list-disc list-inside text-gray-300 space-y-2">
+              {rec.map((val, ind) => (
+                <li key={ind} className="text-green-400">
+                  {val}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
     </div>
