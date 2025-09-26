@@ -8,9 +8,10 @@ import {
   Menu,
   X,
 } from "lucide-react";
+import Link from "next/link";
 
 const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
@@ -33,27 +34,19 @@ const Sidebar = () => {
         <nav className="flex flex-col gap-3">
           <span className="flex space-x-3 items-center cursor-pointer p-2 rounded-2xl hover:bg-black">
             <LayoutDashboard size={18} />
-            <a href="/" className="hover:text-blue-400">
-              Dashboard
-            </a>
+            <Link href="/" className="hover:text-blue-400">Dashboard</Link>
           </span>
           <span className="flex space-x-3 items-center cursor-pointer p-2 rounded-2xl hover:bg-black">
             <FlaskConicalIcon size={18} />
-            <a href="/simulation" className="hover:text-blue-400">
-              Simulation
-            </a>
+            <Link href="/simulation" className="hover:text-blue-400">Simulation</Link>
           </span>
           <span className="flex space-x-3 items-center cursor-pointer p-2 rounded-2xl hover:bg-black">
             <ClipboardMinus size={18} />
-            <a href="/reports" className="hover:text-blue-400">
-              Reports
-            </a>
+            <Link href="/reports" className="hover:text-blue-400">Reports</Link>
           </span>
           <span className="flex space-x-3 items-center cursor-pointer p-2 rounded-2xl hover:bg-black">
             <Settings size={18} />
-            <a href="/settings" className="hover:text-blue-400">
-              Settings
-            </a>
+            <Link href="/settings" className="hover:text-blue-400">Settings</Link>
           </span>
         </nav>
       </aside>
