@@ -1,12 +1,12 @@
 import Image from "next/image";
 import MetricCard from "./components/MetricCard";
 import TrainRow from "./components/TrainRow";
+// import TrainJourneyViewer from "./components/RailwaySectionView";
 import RailwaySectionView from "./components/RailwaySectionView";
-
 export default function DashBoard() {
   return (
     <>
-      <div className="space-y-6">
+      <div className="space-y-6 flex flex-col">
         {/* Header */}
         <h2 className="text-3xl font-bold ml-10">Dashboard</h2>
         <p className="text-gray-400">
@@ -31,12 +31,14 @@ export default function DashBoard() {
         </div>
 
         {/* Middle Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div className="flex   gap-4">
           {/* Railway Section View */}
+          {/* <TrainJourneyViewer/> */}
           <RailwaySectionView/>
+        
 
           {/* AI Recommendations */}
-          <div className="bg-gray-800 rounded-xl p-4">
+          {/* <div className="bg-gray-800 rounded-xl p-4">
             <h3 className="text-lg font-semibold mb-3">AI Recommendations</h3>
             <ul className="list-disc list-inside text-gray-300 space-y-2">
               <li className="text-red-400">
@@ -48,7 +50,7 @@ export default function DashBoard() {
               <li className="text-green-400">Reduce speed for EXP-001…</li>
               <li className="text-green-400">Advise crew of FRT-745…</li>
             </ul>
-          </div>
+          </div> */}
         </div>
 
         {/* Train Status */}
